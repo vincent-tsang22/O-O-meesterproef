@@ -8,16 +8,19 @@
 </head>
 <body>
     <div class="container">
+        <!-- Toggle Button -->
+        <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+
         <!-- Verticale Navigatie Bar -->
-        <nav class="sidebar">
+        <nav class="sidebar" id="sidebar">
             <div class="nav-header">
                 <h2>Menu</h2>
             </div>
             <ul class="nav-list">
-                <li><a href="#home" class="nav-link active">Home</a></li>
-                <li><a href="#about" class="nav-link">Over Ons</a></li>
-                <li><a href="#products" class="nav-link">Producten</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">Home</a></li>
+                <li><a href="/kas" class="nav-link {% if request.path == '/kas' %}active{% endif %}">De Kas</a></li>
+                <li><a href="/verbruik" class="nav-link {% if request.path == '/verbruik' %}active{% endif %}">Verbruik</a></li>
+                <li><a href="/duurzaam" class="nav-link {% if request.path == '/duurzaam' %}active{% endif %}">Innovaties</a></li>
             </ul>
         </nav>
 
@@ -26,5 +29,7 @@
             {% block content %}{% endblock %}
         </main>
     </div>
+
+    <script src="{{ url_for('static', filename='js/base.js') }}"></script>
 </body>
 </html>
