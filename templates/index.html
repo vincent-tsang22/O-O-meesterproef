@@ -5,11 +5,42 @@
 {% block content %}
 <div class="hero">
     <h1>Een Duurzame Kas!</h1>
-    <p>Welkom! En verken de ontwikkelingen rondom een duurzame kas!</p>
+    <p>Welkom! En verken de ontwikkelingen rondom een duurzame kas van TomatoWorld!</p>
 </div>
 
 <section class="welcome">
-    <h2>Welkom</h2>
+    <h2>Welkom!</h2>
     <p>Dit is de homepage van ons duurzame kasproject. Hier kun je meer informatie vinden over onze initiatieven en producten.</p>
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-image">
+                <img src="https://bunny-wp-pullzone-wfi8v5k0bl.b-cdn.net/wp-content/uploads/2014/03/tuinkas.jpg" alt="Afbeelding 1">
+            </div>
+            <div class="card-body">
+                <h3>De Kas</h3>
+                <p>Zie hier hoe een tuinbouwkas werkt met duurzame technologieën.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ url_for('static', filename='images/block2.svg') }}" alt="Afbeelding 2">
+            </div>
+            <div class="card-body">
+                <h3>Verbruik en metingen</h3>
+                <p>Zie hier hoeveel energie en warmte wij verbruiken.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image">
+                <img src="{{ url_for('static', filename='images/block3.svg') }}" alt="Afbeelding 3">
+            </div>
+            <div class="card-body">
+                <h3>Innovaties</h3>
+                <p>Zie hier hoe welke innovaties worden toegepast in het heden bij tuinbouwkassen.</p>
+            </div>
+        </div>
+    </div>
 </section>
 {% endblock %}
