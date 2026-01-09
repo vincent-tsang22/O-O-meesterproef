@@ -62,4 +62,32 @@ document.addEventListener('DOMContentLoaded', function() {
             updateContentClass();
         }
     });
+
+    // Image Dot Popup Functionaliteit
+    const imageDots = document.querySelectorAll('.image-dot');
+    imageDots.forEach(dot => {
+        const dotId = dot.getAttribute('data-dot');
+        const popup = document.getElementById(`popup-${dotId}`);
+        
+        dot.addEventListener('click', function(e) {
+            e.stopPropagation();
+            // Toggle popup visibility
+            popup.classList.toggle('active');
+        });
+
+        dot.addEventListener('mouseenter', function() {
+            popup.classList.add('active');
+        });
+    });
+
+    // Close popup when clicking outside
+    document.addEventListener('click', function(e) {
+        imageDots.forEach(dot => {
+            const dotId = dot.getAttribute('data-dot');
+            const popup = document.getElementById(`popup-${dotId}`);
+            if (!dot.contains(e.target)) {
+                popup.classList.remove('active');
+            }
+        });
+    });
 });

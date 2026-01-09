@@ -10,9 +10,10 @@
 
 <section class="welcome">
     <h2>Welkom!</h2>
-    <p>Dit is de homepage van ons duurzame kasproject. Hier kun je meer informatie vinden over onze initiatieven en producten.</p>
+    <p>Dit is de homepage van ons duurzame kasproject. Hier kun je meer informatie vinden over onze initiatieven en producten.
+        <br>Maak gebruik van deze dashboard om meer te leren over duurzame kassen en onze inspanningen om een groenere toekomst te creëren.</p>
     <div class="card-grid">
-        <div class="card">
+        <a href="/kas" class="card">
             <div class="card-image">
                 <img src="https://bunny-wp-pullzone-wfi8v5k0bl.b-cdn.net/wp-content/uploads/2014/03/tuinkas.jpg" alt="Afbeelding 1">
             </div>
@@ -20,27 +21,27 @@
                 <h3>De Kas</h3>
                 <p>Zie hier hoe een tuinbouwkas werkt met duurzame technologieën.</p>
             </div>
-        </div>
+        </a>
 
-        <div class="card">
+        <a href="/verbruik" class="card">
             <div class="card-image">
-                <img src="{{ url_for('static', filename='images/block2.svg') }}" alt="Afbeelding 2">
+                <img src="https://img.freepik.com/premium-vector/cartoon-graphic-with-diagram-chart-that-says-business_9493-79368.jpg" alt="Afbeelding 2">
             </div>
             <div class="card-body">
                 <h3>Verbruik en metingen</h3>
                 <p>Zie hier hoeveel energie en warmte wij verbruiken.</p>
             </div>
-        </div>
+        </a>
 
-        <div class="card">
+        <a href="/duurzaam" class="card">
             <div class="card-image">
-                <img src="{{ url_for('static', filename='images/block3.svg') }}" alt="Afbeelding 3">
+                <img src="https://img.freepik.com/premium-vector/eco-friendly-vector-illustration-sustainable-cities_943898-18236.jpg" alt="Afbeelding 3">
             </div>
             <div class="card-body">
                 <h3>Innovaties</h3>
                 <p>Zie hier hoe welke innovaties worden toegepast in het heden bij tuinbouwkassen.</p>
             </div>
-        </div>
+        </a>
     </div>
 </section>
 {% endblock %}
