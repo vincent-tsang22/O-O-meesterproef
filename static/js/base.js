@@ -69,14 +69,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const dotId = dot.getAttribute('data-dot');
         const popup = document.getElementById(`popup-${dotId}`);
         
-        dot.addEventListener('click', function(e) {
-            e.stopPropagation();
-            // Toggle popup visibility
-            popup.classList.toggle('active');
-        });
-
+        // Gebruik hover-only: tonen bij mouseenter, verbergen bij mouseleave
         dot.addEventListener('mouseenter', function() {
             popup.classList.add('active');
+        });
+
+        dot.addEventListener('mouseleave', function() {
+            popup.classList.remove('active');
         });
     });
 
