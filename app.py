@@ -22,6 +22,10 @@ def verbruik():
 def duurzaam():
     return render_template('duurzaam.html')
 
+@app.route('/dashboard')
+def dashboard():
+    return render_template('duurzaam.html')
+
 @app.route('/contact')
 def contact():
     return render_template('index.html')

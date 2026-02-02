@@ -4,7 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Een Duurzame Kas!{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Globale CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    
+    <!-- Pagina-specifieke CSS -->
+    {% if request.path == '/' %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    {% elif request.path == '/kas' %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/kas.css') }}">
+    {% elif request.path == '/duurzaam' %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    {% endif %}
 </head>
 <body>
     <div class="container">
@@ -31,5 +42,12 @@
     </div>
 
     <script src="{{ url_for('static', filename='js/base.js') }}"></script>
+    
+    <!-- Pagina-specifieke JavaScript -->
+    {% if request.path == '/kas' %}
+        <script src="{{ url_for('static', filename='js/kas.js') }}"></script>
+    {% elif request.path == '/duurzaam' %}
+        <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    {% endif %}
 </body>
 </html>

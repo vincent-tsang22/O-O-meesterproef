@@ -1,15 +1,89 @@
 {% extends "base.html" %}
 
-{% block title %}De Kas - Een Duurzame Kas!{% endblock %}
+{% block title %}Interactieve Dashboard - Kas Ontwerp{% endblock %}
 
 {% block content %}
 <div class="hero">
-    <h1>Duurzame ontwikkelingen</h1>
-    <p>Sleep elementen</p>
+    <h1>Interactieve Kas Designer</h1>
+    <p>Sleep duurzame elementen in je kas en zie hoe het impact heeft op energie balans</p>
 </div>
 
+<section class="dashboard-container">
+    <div class="legend">
+        <h2>Beschikbare Elementen</h2>
+        <p class="legend-description">Sleep deze elementen naar de kas hiernaast</p>
+        
+        <div class="legend-items">
+            <div class="legend-block draggable" draggable="true" data-element="warmte-pomp">
+                <div class="block-icon">🔥</div>
+                <p>Warmte Pomp</p>
+            </div>
+            
+            <div class="legend-block draggable" draggable="true" data-element="solar-panel">
+                <div class="block-icon">☀️</div>
+                <p>Zonnepaneel</p>
+            </div>
+            
+            <div class="legend-block draggable" draggable="true" data-element="ventilatie">
+                <div class="block-icon">💨</div>
+                <p>Ventilatie</p>
+            </div>
+            
+            <div class="legend-block draggable" draggable="true" data-element="verwarming">
+                <div class="block-icon">🌡️</div>
+                <p>Verwarming</p>
+            </div>
+            
+            <div class="legend-block draggable" draggable="true" data-element="water-systeem">
+                <div class="block-icon">💧</div>
+                <p>Water Systeem</p>
+            </div>
+            
+            <div class="legend-block draggable" draggable="true" data-element="isolatie">
+                <div class="block-icon">🧊</div>
+                <p>Isolatie</p>
+            </div>
+        </div>
+    </div>
 
-
-
+    <div class="kas-designer">
+        <h2>Jouw Kas</h2>
+        
+        <svg class="kas-svg" viewBox="0 0 400 350" xmlns="http://www.w3.org/2000/svg">
+            <!-- Muren -->
+            <rect x="50" y="100" width="300" height="200" fill="none" stroke="#8B7355" stroke-width="8"/>
+            
+            <!-- Dak (driehoek) -->
+            <polygon points="50,100 200,20 350,100" fill="none" stroke="#8B7355" stroke-width="8"/>
+            
+            <!-- Dak lijn in het midden -->
+            <line x1="200" y1="20" x2="200" y2="100" stroke="#8B7355" stroke-width="4"/>
+            
+            <!-- Deuren/ramen -->
+            <rect x="80" y="250" width="50" height="50" fill="none" stroke="#4A90E2" stroke-width="3"/>
+            <rect x="270" y="250" width="50" height="50" fill="none" stroke="#4A90E2" stroke-width="3"/>
+            
+            <!-- Grondlijn -->
+            <line x1="50" y1="300" x2="350" y2="300" stroke="#8B4513" stroke-width="4"/>
+            
+            <!-- Tekst in kas -->
+            <text x="200" y="200" text-anchor="middle" font-size="14" fill="#999">Sleep elementen hier</text>
+        </svg>
+        
+        <div class="kas-dropzone" id="kasDropzone">
+            <!-- Hier verschijnen de gesleepte elementen -->
+            <div class="dropzone-hint">Sleep elementen hier naar de kas</div>
+        </div>
+        
+        <div class="kas-info">
+            <h3>Energie Balans</h3>
+            <div class="info-box">
+                <p><strong>Warmte Productie:</strong> <span id="warmte-productie">0</span> kW</p>
+                <p><strong>Energie Verbruik:</strong> <span id="energie-verbruik">0</span> kW</p>
+                <p><strong>Efficiëntie:</strong> <span id="efficiëntie">0</span>%</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 {% endblock %}
