@@ -62,8 +62,16 @@
 }
 
 .block-icon {
-    font-size: 32px;
+    font-size: 0;
     margin-bottom: 8px;
+}
+
+.block-icon img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 8px;
 }
 
 .legend-block p {
