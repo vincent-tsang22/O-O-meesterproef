@@ -31,4 +31,8 @@ def contact():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    # allow overriding the port via environment (e.g. PORT=5000) or default to 5000
+    import os
+
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=True, port=port)
