@@ -13,9 +13,10 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     {% elif request.path == '/kas' %}
         <link rel="stylesheet" href="{{ url_for('static', filename='css/kas.css') }}">
-    {% elif request.path == '/duurzaam' %}
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
     {% endif %}
+
+    <!-- Pagina- of blokspecifieke extra head-inhoud -->
+    {% block head_extra %}{% endblock %}
 </head>
 <body>
     <div class="container">
@@ -46,8 +47,9 @@
     <!-- Pagina-specifieke JavaScript -->
     {% if request.path == '/kas' %}
         <script src="{{ url_for('static', filename='js/kas.js') }}"></script>
-    {% elif request.path == '/duurzaam' %}
-        <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
     {% endif %}
+
+    <!-- Pagina- of blokspecifieke extra scripts -->
+    {% block scripts_extra %}{% endblock %}
 </body>
 </html>

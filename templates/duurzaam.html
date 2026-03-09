@@ -1,89 +1,355 @@
 {% extends "base.html" %}
 
-{% block title %}Interactieve Dashboard - Kas Ontwerp{% endblock %}
+{% block title %}Interactieve Kas Designer{% endblock %}
+
+{% block head_extra %}
+<!-- ingebedde styling voor dashboard -->
+<style>
+body{
+
+margin:0;
+font-family:Arial;
+background:linear-gradient(#8fd0ea,#cfe9f4);
+height:100vh;
+overflow:hidden;
+
+}
+
+/* HEADER */
+
+.header{
+
+background:#3c7c3c;
+color:white;
+padding:15px;
+text-align:center;
+border-radius:10px;
+margin:20px;
+
+}
+
+.info{
+
+background:#b9cfae;
+color:white;
+margin:20px;
+padding:15px;
+text-align:center;
+border-radius:10px;
+
+}
+
+/* MAIN */
+
+.main{
+
+display:flex;
+height:70vh;
+
+}
+
+
+/* ELEMENT MENU */
+
+.elements{
+
+width:200px;
+background:#f0f0f0;
+padding:15px;
+border-radius:10px;
+margin-left:20px;
+
+}
+
+.element{
+
+background:white;
+padding:10px;
+margin:10px 0;
+border-radius:8px;
+cursor:grab;
+text-align:center;
+
+}
+
+
+/* GREENHOUSE AREA */
+
+.greenhouse-area{
+
+flex:1;
+position:relative;
+display:flex;
+justify-content:center;
+align-items:center;
+
+}
+
+
+/* GREENHOUSE */
+
+.greenhouse{
+
+width:500px;
+height:300px;
+border:4px solid black;
+position:relative;
+background:white;
+
+}
+
+/* ROOF */
+
+.roof{
+
+position:absolute;
+top:-120px;
+left:-4px;
+width:0;
+height:0;
+border-left:254px solid transparent;
+border-right:254px solid transparent;
+border-bottom:120px solid black;
+
+}
+
+
+/* PLANTS */
+
+.plants{
+
+position:absolute;
+bottom:0;
+width:200px;
+height:200px;
+background:repeating-linear-gradient(
+
+green,
+green 5px,
+lightgreen 10px
+
+);
+
+}
+
+.left{
+
+left:40px;
+
+}
+
+.right{
+
+right:40px;
+
+}
+
+
+/* DROPZONE */
+
+#dropzone{
+
+position:absolute;
+width:500px;
+height:300px;
+
+}
+
+
+/* STATS BUTTON */
+
+.stats-button{
+
+width:150px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+font-weight:bold;
+
+}
+
+
+/* STATS PANEL */
+
+#statsPanel{
+
+position:absolute;
+right:-650px;
+top:200px;
+width:600px;
+height:400px;
+background:white;
+border-radius:10px;
+padding:20px;
+transition:0.4s;
+
+}
+
+#statsPanel.active{
+
+right:40px;
+
+}
+</style>
+
+<!-- chart.js voor grafiek -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
 
 {% block content %}
-<div class="hero">
-    <h1>Interactieve Kas Designer</h1>
-    <p>Sleep duurzame elementen in je kas en zie hoe het impact heeft op energie balans</p>
+<div class="dashboard">
+
+<!-- HEADER -->
+
+<div class="header">
+<h1>Interactieve Kas Designer</h1>
+<p>Sleep duurzame elementen in je kas en zie hoe het impact heeft op energie balans</p>
 </div>
 
-<section class="dashboard-container">
-    <div class="legend">
-        <h2>Beschikbare Elementen</h2>
-        <p class="legend-description">Sleep deze elementen naar de kas hiernaast</p>
-        
-        <div class="legend-items">
-            <div class="legend-block draggable" draggable="true" data-element="warmte-pomp">
-                <div class="block-icon"><img src="{{ url_for('static', filename='images/Elements/Schermafbeelding 2026-02-03 132839.jpg') }}" alt="Warmte Pomp"></div>
-                <p>Warmte Pomp</p>
-            </div>
-            
-            <div class="legend-block draggable" draggable="true" data-element="solar-panel">
-                <div class="block-icon"><img src="{{ url_for('static', filename='images/Elements/Schermafbeelding 2026-02-03 132843.jpg') }}" alt="Zonnepaneel"></div>
-                <p>Geothermie</p>
-            </div>
-            
-            <div class="legend-block draggable" draggable="true" data-element="ventilatie">
-                <div class="block-icon"><img src="{{ url_for('static', filename='images/Elements/Schermafbeelding 2026-02-03 132848.jpg') }}" alt="Airmix"></div>
-                <p>Warmte doek</p>
-            </div>
-            
-            <div class="legend-block draggable" draggable="true" data-element="verwarming">
-                <div class="block-icon"><img src="{{ url_for('static', filename='images/Elements/Schermafbeelding 2026-02-03 132853.jpg') }}" alt="Verwarming"></div>
-                <p>Zonnepanneel</p>
-            </div>
-            
-            <div class="legend-block draggable" draggable="true" data-element="water-systeem">
-                <div class="block-icon"><img src="{{ url_for('static', filename='images/Elements/Schermafbeelding 2026-02-03 140008.jpg') }}" alt="Water Systeem"></div>
-                <p>Verlichting</p>
-            </div>
-            
-            <div class="legend-block draggable" draggable="true" data-element="isolatie">
-                <div class="block-icon"><img src="{{ url_for('static', filename='images/Elements/Schermafbeelding 2026-02-03 140014.jpg') }}" alt="Isolatie"></div>
-                <p>Warmte buizen</p>
-            </div>
-        </div>
-    </div>
+<div class="info">
+Verken de duurzame elementen die van toepassing zijn en zie welke impact ze hebben!
+</div>
 
-    <div class="kas-designer">
-        <h2>Jouw Kas</h2>
-        
-        <svg class="kas-svg" viewBox="0 0 400 350" xmlns="http://www.w3.org/2000/svg">
-            <!-- Muren -->
-            <rect x="50" y="100" width="300" height="200" fill="none" stroke="#8B7355" stroke-width="8"/>
-            
-            <!-- Dak (driehoek) -->
-            <polygon points="50,100 200,20 350,100" fill="none" stroke="#8B7355" stroke-width="8"/>
-            
-            <!-- Dak lijn in het midden -->
-            <line x1="200" y1="20" x2="200" y2="100" stroke="#8B7355" stroke-width="4"/>
-            
-            <!-- Deuren/ramen -->
-            <rect x="80" y="250" width="50" height="50" fill="none" stroke="#4A90E2" stroke-width="3"/>
-            <rect x="270" y="250" width="50" height="50" fill="none" stroke="#4A90E2" stroke-width="3"/>
-            
-            <!-- Grondlijn -->
-            <line x1="50" y1="300" x2="350" y2="300" stroke="#8B4513" stroke-width="4"/>
-            
-            <!-- Tekst in kas -->
-            <text x="200" y="200" text-anchor="middle" font-size="14" fill="#999">Sleep elementen hier</text>
-        </svg>
-        
-        <div class="kas-dropzone" id="kasDropzone">
-            <!-- Hier verschijnen de gesleepte elementen -->
-            <div class="dropzone-hint">Sleep elementen hier naar de kas</div>
-        </div>
-        
-        <div class="kas-info">
-            <h3>Energie Balans</h3>
-            <div class="info-box">
-                <p><strong>Warmte Productie:</strong> <span id="warmte-productie">0</span> kW</p>
-                <p><strong>Energie Verbruik:</strong> <span id="energie-verbruik">0</span> kW</p>
-                <p><strong>Efficiëntie:</strong> <span id="efficiëntie">0</span>%</p>
-            </div>
-        </div>
-    </div>
-</section>
 
+<div class="main">
+
+<!-- ELEMENTEN MENU -->
+
+<div class="elements">
+
+<h3>Beschikbare Elementen</h3>
+
+<div class="element" draggable="true">Warmte Pomp</div>
+<div class="element" draggable="true">Geothermie</div>
+<div class="element" draggable="true">Warmte doek</div>
+<div class="element" draggable="true">Zonnepaneel</div>
+<div class="element" draggable="true">Verlichting</div>
+<div class="element" draggable="true">Warmte buizen</div>
+
+</div>
+
+
+<!-- KAS -->
+
+<div class="greenhouse-area">
+
+<div class="greenhouse">
+
+<div class="roof"></div>
+
+<div class="plants left"></div>
+<div class="plants right"></div>
+
+</div>
+
+<div id="dropzone"></div>
+
+</div>
+
+
+<!-- STATISTICS -->
+
+<div class="stats-button" onclick="toggleStats()">
+Statistieken →
+</div>
+
+</div>
+
+
+<!-- STATS PANEL -->
+
+<div id="statsPanel">
+
+<canvas id="chart"></canvas>
+
+</div>
+
+</div>
+{% endblock %}
+
+{% block scripts_extra %}
+<script>
+const elements = document.querySelectorAll(".element")
+const dropzone = document.getElementById("dropzone")
+
+elements.forEach(el=>{
+
+el.addEventListener("dragstart", e=>{
+
+e.dataTransfer.setData("text", e.target.innerText)
+
+})
+
+})
+
+
+dropzone.addEventListener("dragover",e=>{
+
+e.preventDefault()
+
+})
+
+
+dropzone.addEventListener("drop",e=>{
+
+e.preventDefault()
+
+let text = e.dataTransfer.getData("text")
+
+let div = document.createElement("div")
+
+div.innerText = text
+
+div.style.position="absolute"
+div.style.left = e.offsetX + "px"
+div.style.top = e.offsetY + "px"
+div.style.background="lightgrey"
+div.style.padding="5px"
+div.style.borderRadius="5px"
+
+dropzone.appendChild(div)
+
+})
+
+
+function toggleStats(){
+
+document.getElementById("statsPanel").classList.toggle("active")
+
+}
+
+
+/* CHART */
+
+const ctx = document.getElementById("chart")
+
+new Chart(ctx,{
+
+type:"bar",
+
+data:{
+
+labels:[6,7,8,9,10,11,12,13,14,15,16,17,18],
+
+datasets:[
+
+{
+label:"Warmte verbruik",
+data:[1.5,1.7,1.0,1.5,1.4,1.0,0.5,0.4,0.8,0.6,0.9,1.0],
+backgroundColor:"#b7d67c"
+},
+
+{
+label:"Energie verbruik",
+data:[3.7,3.5,3.6,2.6,2.8,3.0,2.5,2.2,2.0,1.7,2.2,2.8,3.5],
+backgroundColor:"#355e2b"
+}
+
+]
+
+}
+
+})
+</script>
 {% endblock %}
