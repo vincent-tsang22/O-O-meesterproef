@@ -14,9 +14,6 @@ def home():
 def kas():
     return render_template('de.kas.html')
 
-@app.route('/verbruik')
-def verbruik():
-    return render_template('verbruik.html')
 
 @app.route('/duurzaam')
 def duurzaam():
