@@ -111,6 +111,22 @@
     display: block;
 }
 
+/* Bottom screenshot overlay */
+.bottom-screenshot {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    z-index: -1;
+    background-color: white; /* or transparent if needed */
+}
+
+.bottom-screenshot img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 
 .kas-designer {
     flex: 1;
