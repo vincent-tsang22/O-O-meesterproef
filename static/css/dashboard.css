@@ -3,22 +3,28 @@
 /* ===== DASHBOARD CONTAINER ===== */
 
 .dashboard-container {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr;
     gap: 40px;
-    padding: 40px 20px;
+    padding: 40px 10px 40px 0; /* remove left padding */
+    margin-left: 0; /* shift container completely left, touching sidebar */
     max-width: 1400px;
-    margin: 0 auto;
-    background-color: #f9f9f9;
+    /* margin: 0 auto; */ /* verwijderd om centrering te voorkomen */
+    background-color: transparent; /* removed grey border/background */
+    align-items: stretch;      /* legend and screenshot same height */
+    justify-content: left;    /* align grid to left so legend sits at left edge */
 }
 
 /* ===== LEGEND ===== */
 
 .legend {
-    flex: 0 0 280px;
+    transform: scale(1.5);
     background-color: white;
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 20%;
+    margin-bottom: 60%;
 }
 
 .legend h2 {
@@ -82,6 +88,29 @@
 }
 
 /* ===== KAS DESIGNER ===== */
+
+/* screenshot to the right of legend */
+.screenshot {
+    width: 110%;                      /* almost full width */
+    max-width: none;                 /* remove cap */
+    background-color: transparent;   /* no white box */
+    padding: 0;                      /* remove inner padding */
+    border-radius: 0;
+    box-shadow: none;                /* no shadow */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;            /* center within grid column */
+    margin-left: 150%;
+}
+
+.screenshot img {
+    height: auto;
+    width: 100%;                      /* fill container width */
+    max-width: 100%;
+    display: block;
+}
+
 
 .kas-designer {
     flex: 1;
@@ -220,15 +249,25 @@
 /* ===== RESPONSIVE DESIGN ===== */
 
 @media (max-width: 900px) {
+    /* revert to vertical stack on small screens */
     .dashboard-container {
+        display: flex;
         flex-direction: column;
+        align-items: center;
     }
 
     .legend {
-        flex: 0 0 auto;
+        width: 100%;
+        max-width: 500px;
     }
 
     .legend-items {
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    .screenshot {
+        width: 100%;
+        max-width: 600px;
+        margin-top: 20px;
     }
 }
