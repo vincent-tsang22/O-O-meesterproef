@@ -13,6 +13,7 @@
     background-color: transparent; /* removed grey border/background */
     align-items: stretch;      /* legend and screenshot same height */
     justify-content: left;    /* align grid to left so legend sits at left edge */
+    position: relative; /* for absolute drop-box */
 }
 
 /* ===== LEGEND ===== */
@@ -87,6 +88,58 @@
     color: #333;
 }
 
+/* ===== DROP BOX ===== */
+
+.drop-box {
+    width: 200px;
+    height: 150px;
+    background-color: #f9f9f9;
+    border: 3px dashed #4caf50;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 880px;
+    top: 730px;
+    transition: all 0.3s ease;
+}
+
+.drop-box.drag-over {
+    background-color: #e8f5e9;
+    border-color: #2e7d32;
+    box-shadow: inset 0 0 12px rgba(76, 175, 80, 0.2);
+}
+
+.drop-hint {
+    color: #999;
+    font-size: 14px;
+    text-align: center;
+    pointer-events: none;
+}
+
+.drop-box.has-items .drop-hint {
+    display: none;
+}
+
+.dropped-images {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.dropped-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
 /* ===== KAS DESIGNER ===== */
 
 /* screenshot to the right of legend */
@@ -119,6 +172,7 @@
     width: 100vw;
     z-index: -1;
     background-color: white; /* or transparent if needed */
+    height: 110%;
 }
 
 .bottom-screenshot img {
