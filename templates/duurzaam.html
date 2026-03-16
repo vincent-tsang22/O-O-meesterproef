@@ -6,11 +6,20 @@
 <div class="hero">
     <h1>Interactieve Kas Designer</h1>
     <p>Sleep duurzame elementen in je kas en zie hoe het impact heeft op energie balans</p>
+
+</div>
+
+<div class="theme-switch">
+    <input type="checkbox" id="themeToggle">
+    <label for="themeToggle" class="switch">
+        <span class="sun">☀️</span>
+        <span class="moon">🌙</span>
+        <span class="slider"></span>
+    </label>
 </div>
 
 <section class="innovation">
-    <h2>Over Onze Kas</h2>
-    <p>Hier vind je gedetailleerde informatie over onze duurzame kasproject.<br>Dit is een innovatieve aanpak voor duurzame landbouw en milieuvriendelijke productiemethoden.</p>
+    <p style = "color: white; margin-left: 35%; scale: calc(1.2);">Verken de duurzame elementen die van toepassing zijn en zie welke impact ze hebben!</p>
 </section> <br><br>  
 
 <section class="dashboard-container">
@@ -20,43 +29,49 @@
         
         <div class="legend-items">
             <div class="legend-block draggable" draggable="true" data-element="warmte-pomp">
-                <div class="block-icon"><img src="{{ url_for('static', filename='images/Elements/Schermafbeelding 2026-02-03 132839.jpg') }}" alt="Warmte Pomp"></div>
+                <div class="block-icon"><img src="{{ url_for('static', filename='images/Elements/Screenshot 2026-03-16 021832.png') }}" alt="Warmte Pomp"></div>
                 <p>Warmte Pomp</p>
             </div>
             
             <div class="legend-block draggable" draggable="true" data-element="solar-panel">
-                <div class="block-icon"><img src="{{ url_for('static', filename='images/Elements/Schermafbeelding 2026-02-03 132843.jpg') }}" alt="Zonnepaneel"></div>
+                <div class="block-icon"><img src="{{ url_for('static', filename='images/Elements/Screenshot 2026-03-16 021838.png') }}" alt="Zonnepaneel"></div>
                 <p>Geothermie</p>
             </div>
             
             <div class="legend-block draggable" draggable="true" data-element="ventilatie">
-                <div class="block-icon"><img src="{{ url_for('static', filename='images/Elements/Schermafbeelding 2026-02-03 132848.jpg') }}" alt="Airmix"></div>
+                <div class="block-icon"><img src="{{ url_for('static', filename='images/Elements/Screenshot 2026-03-16 021843.png') }}" alt="Airmix"></div>
                 <p>Warmte doek</p>
             </div>
             
             <div class="legend-block draggable" draggable="true" data-element="verwarming">
-                <div class="block-icon"><img src="{{ url_for('static', filename='images/Elements/Schermafbeelding 2026-02-03 132853.jpg') }}" alt="Verwarming"></div>
+                <div class="block-icon"><img src="{{ url_for('static', filename='images/Elements/Screenshot 2026-03-16 021848.png') }}" alt="Verwarming"></div>
                 <p>Zonnepanneel</p>
             </div>
             
             <div class="legend-block draggable" draggable="true" data-element="water-systeem">
-                <div class="block-icon"><img src="{{ url_for('static', filename='images/Elements/Schermafbeelding 2026-02-03 140008.jpg') }}" alt="Water Systeem"></div>
+                <div class="block-icon"><img src="{{ url_for('static', filename='images/Elements/Screenshot 2026-03-16 021853.png') }}" alt="Water Systeem"></div>
                 <p>Verlichting</p>
             </div>
             
             <div class="legend-block draggable" draggable="true" data-element="isolatie">
-                <div class="block-icon"><img src="{{ url_for('static', filename='images/Elements/Schermafbeelding 2026-02-03 140014.jpg') }}" alt="Isolatie"></div>
+                <div class="block-icon"><img src="{{ url_for('static', filename='images/Elements/Screenshot 2026-03-16 021857.png') }}" alt="Isolatie"></div>
                 <p>Warmte buizen</p>
             </div>
         </div>
     </div>
 
-    <!-- Drop box for draggable elements -->
-    <div class="drop-box" id="dropBox">
+    <!-- Drop box voor eerste zone (afbeelding) -->
+    <div class="drop-box drop-box1" id="dropBox">
         <div class="drop-hint">Sleep elementen hierheen</div>
         <div class="dropped-images" id="droppedImages"></div>
     </div>
-    
+
+    <!-- Drop box voor tweede zone (vullende balk) -->
+    <div class="drop-box drop-box2" id="dropBox2">
+        <div class="drop-hint">Sleep elementen hierheen (2)</div>
+        <div class="dropped-images" id="droppedImages2"></div>
+    </div>
+
     <!-- screenshot image added to right of legend -->
     <div class="screenshot">
         <img src="{{ url_for('static', filename='images/Prototype/Screenshot 2026-03-13 005455.png') }}" alt="Dashboard screenshot" class="responsive-image">
@@ -81,7 +96,7 @@
 
 <!-- New screenshot overlay at bottom -->
 <div class="bottom-screenshot">
-    <img src="{{ url_for('static', filename='images/Prototype/Screenshot 2026-03-14 000999.png') }}" alt="Bottom screenshot" style="width: 100%; height: auto; display: block;">
+    <img src="{{ url_for('static', filename='images/Prototype/Screenshot 2026-03-16 013200.png') }}" alt="Bottom screenshot" style="width: 100%; height: auto; display: block;">
 </div>
 
 {% endblock %}
