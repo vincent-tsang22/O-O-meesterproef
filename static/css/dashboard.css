@@ -341,3 +341,58 @@
         margin-top: 20px;
     }
 }
+
+/* ===== STATISTICS TOGGLE ===== */
+
+.stats-toggle {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    font-weight: 600;
+    cursor: pointer;
+    color: #333;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stats-toggle .arrow {
+    font-size: 22px;
+    transition: transform 0.3s ease;
+}
+
+
+/* ===== PANEL ===== */
+
+.stats-panel {
+    position: fixed;
+    top: 120px;
+    right: -650px;
+    width: 620px;
+    height: 420px;
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.15);
+    transition: right 0.4s ease;
+    z-index: 99;
+}
+
+.stats-panel.open {
+    right: 40px;
+}
+
+.stats-panel h3 {
+    margin-bottom: 15px;
+    color: #2c5f2d;
+}
+
+
+/* Rotate arrow when open */
+
+.stats-toggle.open .arrow {
+    transform: rotate(180deg);
+}
